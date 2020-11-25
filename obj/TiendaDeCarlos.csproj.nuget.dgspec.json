@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos\\TiendaDeCarlos.csproj": {}
+    "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos\\TiendaDeCarlos.csproj": {
+    "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos\\TiendaDeCarlos.csproj",
+        "projectUniqueName": "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos.csproj",
         "projectName": "TiendaDeCarlos",
-        "projectPath": "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos\\TiendaDeCarlos.csproj",
+        "projectPath": "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos.csproj",
         "packagesPath": "C:\\Users\\Nicolle\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\TiendaDeCarlos\\obj\\",
+        "outputPath": "C:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nicolle\\AppData\\Roaming\\NuGet\\NuGet.Config"

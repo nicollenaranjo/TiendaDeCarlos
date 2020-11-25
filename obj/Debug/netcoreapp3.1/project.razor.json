@@ -14412,13 +14412,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Shared\\Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\CarlosStore\\Login.cshtml",
+      "TargetPath": "Views\\CarlosStore\\Login.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     },
     {
