@@ -1,10 +1,27 @@
 using System;
+using System.IO;
+using TiendaDeCarlos.Models;
+using System.Collections.Generic;
 
 namespace TiendaDeCarlos.Models
 {
-    public class ClienteModel
+    public class ClienteModel : UsuarioWebModel
     {
-        public string Name {get; set;}
-        public string Pass {get; set;}
+        #region Properties
+        public List<DateTime> FechaCompra = new List<DateTime>();
+        public List<ProductoModel> ProductoCompra = new List<ProductoModel>();
+        public enum MetodoPago
+        {
+            TarjetaCredito,
+            PayPal,
+            CuentaAhorros
+        }
+        public MetodoPago metodoPago;
+        #endregion Properties
+
+        #region Methods
+        
+        #endregion Methods
+
     }
 }
