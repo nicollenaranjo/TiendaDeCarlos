@@ -8,7 +8,11 @@
 {
     width: 50%;
     height: 100vh;
-    
+}
+
+.infoWrapper img
+{
+    filter: blur(6px);
 }
 
 .infoWrapper h1
