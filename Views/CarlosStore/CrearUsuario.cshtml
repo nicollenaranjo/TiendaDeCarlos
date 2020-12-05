@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+    <head>
+        <meta name="viewport">
+        <link rel="stylesheet" href="~/css/UsuarioStyle.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <section id="pantallaNotWorking">
+            <form class="NewCampesino" asp-controller="Usuario" asp-action="CrearCampesino">
+                <input class="botons" type="submit" value="Campesino">
+            </form>
+            <form asp-controller="Usuario" asp-action="CrearCliente">
+                <input class="botons" type="submit" value="Cliente">
+            </form>
+        </section>
+    </body>
+</html>

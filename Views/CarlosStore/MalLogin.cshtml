@@ -20,21 +20,22 @@
                     <div>
                         <p>¡Ingresa a tu cuenta!</p>
                         <label>
-                            <input class="controls" asp-for="Username" type="text" placeholder="Username" required>
+                            <input class="controls" asp-for="Username" type="text" placeholder="Username">
                         </label>
                     </div>
                     <div>
                         <label>
-                                <input class="controls" asp-for="Contrasena" type="text" placeholder="Contraseña" required>
+                                <input class="controls" asp-for="Contrasena" type="text" placeholder="Contraseña">
                             </label>
                             <p>¿Olvidaste tu contraseña?</p>
                         </div>
                         <div>
                             <input class="botons" type="submit" value="Ingresar">
+                            <p>El usurio o la contraseña son erroneos</p>
                         </div>
                         <div>
                             ¿Aún no tienes cuenta?
-                            <a class ="words" asp-controller="CarlosStore" asp-action="CrearUsuario">¡Creala!</a>
+                            <a class ="words" href="CrearUsuario.cshtml" title="Mi enlace">¡Creala!</a>
                         </div>
                     </form>
                 </div>

@@ -4,33 +4,19 @@
     padding: 0;
 }
 
-.infoWrapper
+.NewCampesino
 {
-    width: 50%;
-    height: 100v
-}
-
-
-.infoWrapper h1
-{
-    font-family: 'Castoro', serif;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-.MainWrapper
-{
-    
     width: 50%;
     height: 100vh;
-    background-color: #ffd740;
+    background-color: #c2b892;
     justify-content: center;
     align-items: center;
     display: flex;
     border-radius: 0.5em;
 }
 
-.MainWrapper form
+
+.NewCampesino input
 {
     justify-content: center;
     align-items: center;
@@ -42,12 +28,27 @@
     border-radius: 0.5em;
 }
 
-.MainWrapper form p
+#pantallaNotWorking form
 {
-    text-align: center;
-    font-family: 'Castoro', serif;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    
+    width: 50%;
+    height: 100vh;
+    background-color: #1191b8;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#pantallaNotWorking form input
+{
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    display: grid;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    box-shadow: -4px 4px 12px 1px rgba(0, 0, 0, 0.4);
+    border-radius: 0.5em;
 }
 
 .controls
@@ -70,25 +71,9 @@
     border: none;
     transition: all 0.1s linear;
     font-family: 'Castoro', serif;
-    border-radius: 0.5em;
 }
 
-#pantallaNotWorking
+#pantallaNotWorking 
 {
-    display: flex;
+    display: flex
 }
-/*
-.words
-{
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    font-family: 'Castoro', serif;
-}
-
-.pass
-{
-    margin-bottom: 5px;
-    font-size: 0.7rem;
-    font-family: 'Castoro', serif;
-}*/

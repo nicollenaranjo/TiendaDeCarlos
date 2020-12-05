@@ -1,6 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TiendaDeCarlos.Models;
+using TiendaDeCarlos.Services;
 
 namespace TiendaDeCarlos.Controllers
 {
@@ -8,9 +13,31 @@ namespace TiendaDeCarlos.Controllers
     [Route("[controller]")]
     public class CarlosStoreController : Controller
     {
+        #region Properties
+        private readonly TiendaDBContext dBContext;
+        #endregion Properties
+
+        
+        #region Constructor
+        public CarlosStoreController(TiendaDBContext dBContext)
+        {
+            this.dBContext = dBContext;
+        }
+        #endregion Constructor
+
         //https://localhost:5001/CarlosStore/Login
         [HttpGet("Login")]
         public IActionResult Login()
+        {
+            
+                 /*List<ClienteModel> users = await dBContext.Clientes.ToListAsync();
+                ClienteModel Cliente = users.First(u => u.Username == user.Username); //buscar user
+                return View();*/
+            return View();
+        }
+        //https://localhost:5001/CarlosStore/CrearUsuario
+        [HttpGet("CrearUsuario")]
+        public IActionResult CrearUsuario()
         {
             return View();
         }

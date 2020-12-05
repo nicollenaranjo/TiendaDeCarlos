@@ -1,8 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace TiendaDeCarlos.Models
 {
     public class UsuarioWebModel : IUsuarioModel
     {
         #region Properties
+        [Key]
+        public int Id;
+        public string Username;
         public string Nombre;
         public string Apellido;
         public string Contrasena;
@@ -10,13 +15,6 @@ namespace TiendaDeCarlos.Models
         #endregion Properties
 
         #region Methods
-        public void CrearUsuario(string n, string a, string c, string d)
-        {
-            Nombre = n;
-            Apellido = a;
-            Contrasena = c;
-            Domicilio =d;
-        }
         #endregion Methods
     }
 }
