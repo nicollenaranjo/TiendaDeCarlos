@@ -4,6 +4,29 @@
     padding: 0;
 }
 
+.NewUser
+{
+    width: 50%;
+    height: 100vh;
+    background-color: #1191b8;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 0.5em;
+}
+
+.NewUser input
+{
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    display: grid;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    box-shadow: -4px 4px 12px 1px rgba(0, 0, 0, 0.4);
+    border-radius: 0.5em;
+}
+
 .NewCampesino
 {
     width: 50%;
@@ -26,17 +49,6 @@
     color: white;
     box-shadow: -4px 4px 12px 1px rgba(0, 0, 0, 0.4);
     border-radius: 0.5em;
-}
-
-#pantallaNotWorking form
-{
-    
-    width: 50%;
-    height: 100vh;
-    background-color: #1191b8;
-    justify-content: center;
-    align-items: center;
-    display: flex;
 }
 
 #pantallaNotWorking form input

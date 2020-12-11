@@ -9,20 +9,21 @@ namespace TiendaDeCarlos.Models
     public class ClienteModel : UsuarioWebModel
     {
         #region Properties
-        public List<DateTime> FechaCompra = new List<DateTime>();
-        public List<ProductoModel> ProductoCompra = new List<ProductoModel>();
-        public enum MetodoPago
-        {
-            TarjetaCredito,
-            PayPal,
-            CuentaAhorros
-        }
         public MetodoPago metodoPago;
         #endregion Properties
 
         #region Methods
-        
         #endregion Methods
 
     }
 }
+
+    public enum MetodoPago
+        {
+            [Display(Name = "TarjetaCredito")]
+            TarjetaCredito = 0,
+            [Display(Name = "PayPal")]
+            PayPal = 1,
+            [Display(Name = "CuentaAhorros")]
+            CuentaAhorros = 2
+        }

@@ -1,9 +1,10 @@
+
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
-namespace TiendaDeCarlos.Models
+namespace TiendaDeCarlos.ViewModels
 {
-    public class ProductoModel
+    public class ProductoViewModel
     {
         #region Properties
         [Key]
@@ -11,7 +12,11 @@ namespace TiendaDeCarlos.Models
         public string Nombre {get; set;}
         public int Cantidad {get; set;}
         public int IdVendedor {get; set;}
-        public string Imagen {get; set;}
+
+
+        [Required(ErrorMessage = "Please choose profile image")]  
+        [Display(Name = "ImagenName")]
+        public IFormFile ImagenName {get; set;}
         #endregion Properties
     }
 }

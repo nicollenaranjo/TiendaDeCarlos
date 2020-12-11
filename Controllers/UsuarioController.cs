@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,49 +25,48 @@ namespace TiendaDeCarlos.Controllers
         }
         #endregion Constructor
 
-        //https://localhost:5001/Usuario/ClienteDef
-        [HttpGet("ClienteDef")]
-        public async Task<IActionResult> ClienteDef(string user, string nombre, string apellido, string contrasena, string domicilio )
+        public enum MetodoPago
         {
-            ClienteModel Cliente = new ClienteModel()
-            {
-                Username = user,
-                Nombre = nombre,
-                Apellido = apellido,
-                Contrasena = contrasena,
-                Domicilio = domicilio
-            };
-            dBContext.clientes.Add(Cliente);
-            await dBContext.SaveChangesAsync();
-            return View();
+            TarjetaCredito = 0,
+            PayPal = 1,
+            CuentaAhorros = 2
         }
 
-        //https://localhost:5001/Usuario/CrearCliente
-        [HttpGet("CrearCliente")]
-        public IActionResult CrearCliente()
+        public IActionResult MalLogin()
         {
             return View();
         }
 
-        //https://localhost:5001/Usuario/CrearCampesino
-        [HttpGet("CrearCampesino")]
-        public IActionResult CrearCampesino()
+        //https://localhost:5001/Usuario/Loginn
+        [HttpPost("Loginn")]
+        public async Task<IActionResult> Loginn( UsuarioWebModel usuario )
         {
-            return View();
+            UsuarioWebModel cam = new UsuarioWebModel();
+            try
+            { 
+                List<CampesinoModel> Campesinos = await dBContext.campesinos.ToListAsync();
+                cam = Campesinos.First(a => a.Username == usuario.Username && a.Contrasena == usuario.Contrasena);
+                return RedirectToAction("HomeCampesino", "Campesino", cam); 
+            }
+            catch( Exception e)
+            {   
+                try
+                {
+                    List<ClienteModel> Clientes = await dBContext.clientes.ToListAsync();
+                    cam = Clientes.First(a => a.Username == usuario.Username && a.Contrasena == usuario.Contrasena);
+                    return RedirectToAction("HomeCliente", "Cliente", cam);
+                }
+                catch(InvalidOperationException)
+                {
+                    return RedirectToAction("MalLogin");
+                }
+            }
         }
 
-        public async Task<IActionResult> CampesinoDef( string user, string nombre, string apellido, string contrasena, string domicilio )
+        //https://localhost:5001/Usuario/CrearUsuario
+        [HttpGet("CrearUsuario")]
+        public IActionResult CrearUsuario()
         {
-            CampesinoModel Campesino = new CampesinoModel()
-            {
-                Username = user,
-                Nombre = nombre,
-                Apellido = apellido,
-                Contrasena = contrasena,
-                Domicilio = domicilio
-            };
-            dBContext.campesinos.Add(Campesino);
-            await dBContext.SaveChangesAsync();
             return View();
         }
     }

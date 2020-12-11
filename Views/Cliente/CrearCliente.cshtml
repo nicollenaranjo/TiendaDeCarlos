@@ -10,7 +10,7 @@
     <body>
         
             <div class="NewUser">
-                <form asp-controller="Usuario" asp-action="ClienteDef"  method="POST">
+                <form asp-controller="Cliente" asp-action="CrearClienteDef" method="POST">
                     <div>
                         <input class="controls" asp-for="Nombre" placeholder="Nombre" required>
                         <input class="controls" asp-for="Apellido" placeholder="Apellido" required>
@@ -20,9 +20,12 @@
                     </div>
                     <div>
                         <p>Metodo de pago:
-                        <input type="radio" required> TarjetaCredito
-                        <input type="radio" required> PayPal
-                        <input type="radio" required> CuentaAhorros
+                            <select id="testSelect" name="testSelect" asp-for="metodoPago">
+                                <option value="0">TarjetaCredito</option>
+                                <option value="1">PayPal</option>
+                                <option value="2">CuentaAhorros</option>
+                            </select>
+                            <asp:Button ID="btnTest" runat="server" Text="Test it!" onclick="btnTest_Click" />
                         </p>
                     </div>
                     <div>
@@ -31,7 +34,12 @@
                     
                 </form>
              </div>
-        
+        <script>
+            function myFunction() 
+            {
+                var a = document.getElementById("metodo").value;
+            }
+        </script>
 
     </body>    
 </html>

@@ -10,13 +10,13 @@
     <body>
         <section id="Campesino">
             <div class="NewUser">
-                <form asp-controller="Usuario" asp-action="CampesinoDef"  method="POST">
+                <form asp-controller="Campesino" asp-action="CrearCampesinoDef"  method="POST">
                     <div>
-                        <input class="controls" asp-for="Nombre" placeholder="Nombre" required>
-                        <input class="controls" asp-for="Apellido" placeholder="Apellido" required>
-                        <input class="controls" asp-for="Domicilio" placeholder="Domicilio" required>
-                        <input class="controls" asp-for="Username" placeholder="Username" required>
-                        <input class="controls" asp-for="Contrasena" type="password" placeholder="Contraseña" required>
+                        <input class="controls" asp-for="Nombre" name="nombre" placeholder="Nombre" required>
+                        <input class="controls" asp-for="Apellido" name="apellido" placeholder="Apellido" required>
+                        <input class="controls" asp-for="Domicilio" name="domicilio" placeholder="Domicilio" required>
+                        <input class="controls" asp-for="Username" name="username" placeholder="Username" required>
+                        <input class="controls" asp-for="Contrasena" name="contrasena" type="password" placeholder="Contraseña" required>
                     </div>
                     <div>
                         <input class="botons" type="submit" value="Registrarse">

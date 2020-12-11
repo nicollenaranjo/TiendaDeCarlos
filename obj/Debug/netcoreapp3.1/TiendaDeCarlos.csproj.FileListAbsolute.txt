@@ -56,8 +56,13 @@ C:\Users\Nicolle\Desktop\TiendaDeCarlos\bin\Debug\netcoreapp3.1\Pomelo.EntityFra
 C:\Users\Nicolle\Desktop\TiendaDeCarlos\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll
 C:\Users\Nicolle\Desktop\TiendaDeCarlos\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\Nicolle\Desktop\TiendaDeCarlos\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\CarlosStore\MalLogin.cshtml.g.cs
-C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\CarlosStore\CrearUsuario.cshtml.g.cs
-C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\CrearCampesino.cshtml.g.cs
-C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\CrearCliente.cshtml.g.cs
 C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\CarlosStore\Login.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\MalLogin.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Campesino\CrearCampesino.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\CrearCliente.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\CrearUsuario.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Campesino\HomeCampesino.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\HomeCliente.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Campesino\CasiAgregarProducto.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\CarritoCliente.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Campesino\CasiEditarProducto.cshtml.g.cs

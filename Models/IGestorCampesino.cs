@@ -3,17 +3,17 @@ namespace TiendaDeCarlos.Models
     public interface IGestorCampesino
     {
         #region Methods
-        void AgregarProducto(ProductoModel ProductoNuevo )
+        void AgregarProducto(ProductoModel ProductoNuevo, CampesinoModel c1 )
         {
+            c1.ProductoVendedor.Add(ProductoNuevo);
         }
         void EditarProducto(ProductoModel ProductoEditado )
         {
+            
         }
         void EliminarProducto(ProductoModel ProductoEliminado )
         {
-        }
-        void VisualizarProductos()
-        {
+
         }
         void GenerarRegistro(ProductoModel producto, ClienteModel c)
         {

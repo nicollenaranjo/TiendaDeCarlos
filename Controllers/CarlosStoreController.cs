@@ -29,16 +29,6 @@ namespace TiendaDeCarlos.Controllers
         [HttpGet("Login")]
         public IActionResult Login()
         {
-            
-                 /*List<ClienteModel> users = await dBContext.Clientes.ToListAsync();
-                ClienteModel Cliente = users.First(u => u.Username == user.Username); //buscar user
-                return View();*/
-            return View();
-        }
-        //https://localhost:5001/CarlosStore/CrearUsuario
-        [HttpGet("CrearUsuario")]
-        public IActionResult CrearUsuario()
-        {
             return View();
         }
     }
