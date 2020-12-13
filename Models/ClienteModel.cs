@@ -10,6 +10,7 @@ namespace TiendaDeCarlos.Models
     {
         #region Properties
         public MetodoPago metodoPago;
+        public List<ProductoModel> productosCarrito = new List<ProductoModel>();
         #endregion Properties
 
         #region Methods

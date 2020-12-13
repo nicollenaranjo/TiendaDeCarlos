@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TiendaDeCarlos.Models;
 using TiendaDeCarlos.Services;
+using TiendaDeCarlos.ViewModels;
 
 namespace TiendaDeCarlos.Controllers
 {
@@ -36,18 +37,19 @@ namespace TiendaDeCarlos.Controllers
         {
             try
             {
-                CampesinoModel Campesino = new CampesinoModel()
+                CampesinoModel Campesino = dBContext.campesinos.First(a => a.Username == username);
+                if( Campesino == null )
                 {
-                    Username = username,
-                    Nombre = nombre,
-                    Apellido = apellido,
-                    Contrasena = contrasena,
-                    Domicilio = domicilio
-                };
-                dBContext.campesinos.Add(Campesino);
-                await dBContext.SaveChangesAsync();
-                return RedirectToAction("HomeCampesino","Campesino",Campesino);
-
+                    Campesino.Username = username;
+                    Campesino.Nombre = nombre;
+                    Campesino.Apellido = apellido;
+                    Campesino.Contrasena = contrasena;
+                    Campesino.Domicilio = domicilio;
+                    dBContext.campesinos.Add(Campesino);
+                    await dBContext.SaveChangesAsync();
+                    return RedirectToAction("HomeCampesino","Campesino",Campesino);                
+                }
+                return View("MalCrear");
             }
             catch(Exception e)
             {
@@ -80,12 +82,32 @@ namespace TiendaDeCarlos.Controllers
         [HttpPost("CasiAgregarProducto")]
         public IActionResult CasiAgregarProducto()
         {
-            return View();
+            ProductoViewModel producto = new ProductoViewModel();
+            return View(producto);
         }
 
         
-        [HttpPost("AgregoProductoCampesino")]
+        [HttpGet("AgregoProductoCampesino")]
         public async Task<IActionResult> AgregoProductoCampesino( ProductoModel producto )
+        {
+            try
+            {
+                List<CampesinoModel> Campesinos = await dBContext.campesinos.ToListAsync();
+                CampesinoModel cam = new CampesinoModel();
+                cam = Campesinos.First(a => a.Id == producto.IdVendedor);
+                cam.ProductoVendedor.Add(producto);
+                return RedirectToAction("HomeCampesino",cam);
+            }
+            catch( Exception e)
+            {
+                return View(e.Message);
+            }
+            
+        }
+
+
+        [HttpPost("EditoProductoCampesino")]
+        public async Task<IActionResult> EditoProductoCampesino( ProductoModel producto )
         {
             try
             {
@@ -102,11 +124,5 @@ namespace TiendaDeCarlos.Controllers
             
         }
 
-        //https://localhost:5001/Campesino/CasiEditarProducto
-        [HttpPost("CasiEditarProducto")]
-        public IActionResult CasiEditarProducto( int Id)
-        {
-            return View( Id );
-        }
     }
 }

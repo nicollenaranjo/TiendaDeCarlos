@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TiendaDeCarlos.Models;
 using TiendaDeCarlos.Services;
+using TiendaDeCarlos.ViewModels;
 
 namespace TiendaDeCarlos.Controllers
 {
@@ -29,20 +30,26 @@ namespace TiendaDeCarlos.Controllers
         {
             try
             {
-                int i = Convert.ToInt16(Request.Form["testSelect"]);
-                ClienteModel Cliente = new ClienteModel()
+                ClienteModel cliente = dBContext.clientes.First(a => a.Username == username);
+                if( cliente == null )
                 {
-                    Username = username,
-                    Nombre = nombre,
-                    Apellido = apellido,
-                    Contrasena = contrasena,
-                    Domicilio = domicilio,
-                    metodoPago = (MetodoPago)i
-                };
-                Console.WriteLine(Cliente.metodoPago);
-                dBContext.clientes.Add(Cliente);
-                await dBContext.SaveChangesAsync();
-                return RedirectToAction("HomeCliente",Cliente);
+                    int i = Convert.ToInt16(Request.Form["testSelect"]);
+                    ClienteModel Cliente = new ClienteModel()
+                    {
+                        Username = username,
+                        Nombre = nombre,
+                        Apellido = apellido,
+                        Contrasena = contrasena,
+                        Domicilio = domicilio,
+                        metodoPago = (MetodoPago)i
+                    };
+                    Console.WriteLine(Cliente.metodoPago);
+                    dBContext.clientes.Add(Cliente);
+                    await dBContext.SaveChangesAsync();
+                    return RedirectToAction("HomeCliente",Cliente);
+                }
+                return View("MalCrear");
+                
             }
             catch(Exception e)
             {
@@ -60,9 +67,21 @@ namespace TiendaDeCarlos.Controllers
 
         //https://localhost:5001/Cliente/HomeCliente
         [HttpGet("HomeCliente")]
-        public IActionResult HomeCliente(ClienteModel cliente)
+        public async Task<IActionResult> HomeCliente(ClienteModel cliente)
         {
-            return View(cliente);
+            ClienteViewModel ClienteView = new ClienteViewModel()
+            {
+                Id = cliente.Id,
+                Username = cliente.Username,
+                Nombre = cliente.Nombre,
+                Apellido = cliente.Apellido,
+                Contrasena = cliente.Contrasena,
+                Domicilio = cliente.Contrasena,
+                metodoPago = cliente.metodoPago
+            };
+            cliente.productosCarrito.ForEach(producto => ClienteView.productosCarrito.Add(producto));
+            ClienteView.productos = await dBContext.productos.ToListAsync(); 
+            return View(ClienteView);
         }
 
         //https://localhost:5001/Cliente/CarritoCliente
@@ -70,6 +89,22 @@ namespace TiendaDeCarlos.Controllers
         public IActionResult CarritoCliente()
         {
             return View();
+        }
+
+        [HttpPost("AgregarProductoCanasta")]
+        public async Task<IActionResult> AgregarProductoCanasta( int idpro, int IdCliente)
+        {
+            try
+            {
+                ClienteModel cliente = await dBContext.clientes.FindAsync(IdCliente);
+                ProductoModel canasta = await dBContext.productos.FindAsync(idpro);
+                cliente.productosCarrito.Add(canasta);
+                return RedirectToAction("HomeCliente",cliente);
+            }
+            catch( Exception e)
+            {
+                return View(e.Message);
+            }
         }
     }
 }

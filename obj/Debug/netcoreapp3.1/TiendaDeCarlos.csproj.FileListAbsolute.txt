@@ -65,4 +65,7 @@ C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Camp
 C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\HomeCliente.cshtml.g.cs
 C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Campesino\CasiAgregarProducto.cshtml.g.cs
 C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\CarritoCliente.cshtml.g.cs
-C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Campesino\CasiEditarProducto.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Campesino\MalCrear.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Cliente\MalCrear.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\NoPassword.cshtml.g.cs
+C:\Users\Nicolle\Desktop\TiendaDeCarlos\obj\Debug\netcoreapp3.1\Razor\Views\Producto\CasiEditarProducto.cshtml.g.cs

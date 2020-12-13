@@ -2,42 +2,54 @@
 <!DOCTYPE html>
     <head>
         <meta name="viewport">
-        <link rel="stylesheet" href="~/css/ClienteStyle.css" >
+        <link rel="stylesheet" href="~/css/CarritoStyle.css" >
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="MainWrapper">
-            <form method="POST">
-                <div>
-                    <p class="words">Estos son los productos que tiene en canasta</p>
-                    <label>
-                        <!--Aqui van los productos-->
-                    </label>
-                </div>
-                <div>
-                    <p class="words">Si desea puede agregar mas</p>
-                    <select size="1" name="selector">
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                        <option value='6'>6</option>
-                        <option value='7'>7</option>
-                        <option value='8'>8</option>
-                        <option value='9'>9</option>
-                        <option value='10'>10</option>
-                     </select>
-                     <input class="botons" type="submit" value="Pago">
-                </div>
-                <div>
-                    <p class="words">Esta seguro de querer agregar mas productos</p>
-                </div>
-                <div>   
-                    <input class="botons" type="submit" value="Seguir comprando">
-                </div>
-            </form>
+            @if( (Model.productosCarrito) != null)
+            {
+                <form method="POST">
+                    <div class="view">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var producto in Model.productosCarrito)
+                            {
+                                <tr>
+                                    <td><div class="imagen">
+                                        <img src="~/Pictures/@producto.Imagen"   
+                                        height="100" width="100"   
+                                        asp-append-version="true" />  </td>
+                                    <td> @Html.DisplayFor(modelItem => producto.Nombre)</td>
+                                </tr> 
+                            }
+                        </tbody>
+                    </table> 
+                    </div>
+
+                    <div class="pago">
+                        <div>
+                            <p class="words">Esta seguro de querer agregar mas productos</p>
+                        </div>
+                        <div>   
+                            <input class="botons" type="submit" value="Seguir comprando">
+                        </div>
+                    </div> 
+                </form>
+            }
+            else
+            {
+                <p>No tiene productos agregador al carrito</p>
+                <form asp-controller="Cliente" asp-action="HomeCliente">
+                    <button type="submit">Volver a la pagina anterior</button>
+                </form>
+            }
         </div>
     </body>    
 </html>

@@ -69,5 +69,50 @@ namespace TiendaDeCarlos.Controllers
         {
             return View();
         }
+
+        //https://localhost:5001/Usuario/NoPassword
+        [HttpGet("NoPassword")]
+        public IActionResult NoPassword()
+        {
+            return View();
+        }
+
+        [HttpPost("Recuperar")]
+        public async Task<IActionResult> Recuperar( UsuarioWebModel usuario )
+        {
+            UsuarioWebModel cam = new UsuarioWebModel();
+            try
+            { 
+                List<CampesinoModel> Campesinos = await dBContext.campesinos.ToListAsync();
+                cam = Campesinos.First(a => a.Username == usuario.Username);
+                cam.Contrasena = usuario.Contrasena;
+                await dBContext.SaveChangesAsync();
+                return RedirectToAction("Login","CarlosStore"); 
+            }
+            catch( Exception e)
+            {   
+                try
+                {
+                    List<ClienteModel> Clientes = await dBContext.clientes.ToListAsync();
+                    cam = Clientes.First(a => a.Username == usuario.Username);
+                    cam.Contrasena = usuario.Contrasena;
+                    await dBContext.SaveChangesAsync();
+                    return RedirectToAction("Login","CarlosStore"); 
+                }
+                catch(InvalidOperationException)
+                {
+                    return RedirectToAction("NoEncontrado");
+                }
+            }
+        }
+
+        //https://localhost:5001/Usuario/NoEncontrado
+        [HttpGet("NoEncontrado")]
+        public IActionResult NoEncontrado()
+        {
+            return View();
+        }
+
+        
     }
 }

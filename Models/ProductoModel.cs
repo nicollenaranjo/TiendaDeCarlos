@@ -11,6 +11,7 @@ namespace TiendaDeCarlos.Models
         public string Nombre {get; set;}
         public int Cantidad {get; set;}
         public int IdVendedor {get; set;}
+        public double Precio {get; set;}
         public string Imagen {get; set;}
         #endregion Properties
     }

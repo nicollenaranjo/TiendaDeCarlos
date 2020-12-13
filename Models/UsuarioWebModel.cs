@@ -6,7 +6,7 @@ namespace TiendaDeCarlos.Models
     {
         #region Properties
         [Key]
-        public int Id {get; set;}
+        public int Id {get; set;} 
         public string Username {get; set;}
 
         [Required(ErrorMessage = "Ingrese su nombre")]  

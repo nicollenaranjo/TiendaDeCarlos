@@ -1,5 +1,7 @@
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 
 namespace TiendaDeCarlos.ViewModels
@@ -12,10 +14,10 @@ namespace TiendaDeCarlos.ViewModels
         public string Nombre {get; set;}
         public int Cantidad {get; set;}
         public int IdVendedor {get; set;}
+        public double Precio {get; set;}
 
-
-        [Required(ErrorMessage = "Please choose profile image")]  
-        [Display(Name = "ImagenName")]
+        [NotMapped]
+        [DisplayName("Upload File")]
         public IFormFile ImagenName {get; set;}
         #endregion Properties
     }

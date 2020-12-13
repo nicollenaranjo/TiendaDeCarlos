@@ -19,15 +19,6 @@
                     height="120" width="120"   
                     asp-append-version="true" />  
                 <h1>Bienvenide @Model.Nombre</h1>
-                <!--<input type="text" placeholder="Busca Tu Producto">-->
-                <div class="demo">
-                    <form class="form-search" > 
-                        <div class="input-group">
-                            <input class="form-control form-text" maxlength="100" placeholder="Buscar producto" size="9" type="text"/>
-                            <input class="botons" type="submit" value="Buscar" >
-                        </div>
-                    </form>
-                </div>
             </div>
             
             <div class="MainWrapper">
@@ -37,7 +28,10 @@
                     <table>
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Producto</th>
+                            <th>Cantidad agregada</th>
+                            <th>Precio</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,18 +43,17 @@
                                     class="rounded-circle"   
                                     height="100" width="100"   
                                     asp-append-version="true" />  </td>
-                                <td>@Html.DisplayFor(modelItem => producto.Nombre)</td>
+                                <td> @Html.DisplayFor(modelItem => producto.Nombre)</td>
                                 <td>@Html.DisplayFor(modelItem => producto.Cantidad)</td>
-                                <td>
-                                    <form asp-controller="Campesino" asp-action="CasiEditarProducto">
-                                    <button class="botons" name="@producto.Id" type="submit">Editar</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form asp-controller="Campesino" asp-action="CasiEliminarProducto">
-                                    <button class="botons" type="submit">Eliminar</button>
-                                    </form>
-                                </td>
+                                <td>@Html.DisplayFor(modelItem => producto.Precio)</td>
+                                <form class="primerBoton" asp-controller="Producto" asp-action="CasiEditarProducto" method="POST" asp-route-idpro="@producto.Id" asp-route-idCam="@Model.Id">
+                                    <td> <button class="botons" type="submit">Editar</button> </td>
+                                </form>
+                                
+                                <form asp-controller="Producto" asp-action="EliminarProducto" asp-route-idpro="@producto.Id" asp-route-idCam="@Model.Id">
+                                    <td>  <button class="botons" type="submit">Eliminar</button></td>
+                                </form>
+                                
                             </tr>    
                         }
                     </tbody>

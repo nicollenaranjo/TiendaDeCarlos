@@ -3,22 +3,26 @@
 <!DOCTYPE html>
     <head>
         <meta name="viewport">
-        <link rel="stylesheet" >
+        <link rel="stylesheet" href="~/css/AgregarStyle.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
     </head>
     <body>
         <section>
             <div class="NewUser">
-                <form asp-controller="Producto" asp-action="AgregarProducto"  method="POST">
+                <form asp-controller="Producto" asp-action="AgregarProducto" method="POST" enctype="multipart/form-data">
                     <div>
                         <input class="controls" asp-for="@Model.Nombre" name="nombre" placeholder="Nombre" required>
                     </div>
+
                     <div>
-                        <label asp-for="ImagenName" class="control-label">
-                            <input type="file" asp-for="ImagenName" class="custom-file-input" >  
-                        </label>  
-                    </div>  
+                        <input class="controls" asp-for="Precio" name="precio" placeholder="Precio" required>
+                    </div>
+
+                    <div class="form-group">  
+                        <input asp-for="ImagenName" accept="image/*" />
+                    <span asp-validation-for="ImagenName" class="text-danger"></span>  
+                    </div>
                     <div>
                         <p>Cantidad de producto que desea agregar:
                             <select id="testSelect" name="testSelect" asp-for="Cantidad">
@@ -44,6 +48,6 @@
                         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
                     });  
                 </script>  
-            }  
+            }
     </body>    
 </html>

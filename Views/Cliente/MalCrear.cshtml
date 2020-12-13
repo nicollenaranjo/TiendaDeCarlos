@@ -10,15 +10,16 @@
     <body>
         
             <div class="NewUser">
-                <form asp-controller="Cliente" asp-action="CrearClienteDef" method="POST" >
+                <form asp-controller="Cliente" asp-action="CrearClienteDef" method="POST">
                     <div>
                         <input class="controls" asp-for="Nombre" placeholder="Nombre" required>
                         <input class="controls" asp-for="Apellido" placeholder="Apellido" required>
                         <input class="controls" asp-for="Domicilio" placeholder="Domicilio" required>
                         <input class="controls" asp-for="Username" placeholder="Username" required>
+                        <a>El username ya está en uso</a>
                         <input class="controls" asp-for="Contrasena" type="password" placeholder="Contraseña" required>
                     </div>
-                    <div class="selects">
+                    <div>
                         <p>Metodo de pago:
                             <select id="testSelect" name="testSelect" asp-for="metodoPago">
                                 <option value="0">TarjetaCredito</option>

@@ -14397,6 +14397,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Usuario\\NoPassword.cshtml",
+      "TargetPath": "Views\\Usuario\\NoPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Usuario\\CrearUsuario.cshtml",
       "TargetPath": "Views\\Usuario\\CrearUsuario.cshtml",
       "FileKind": "mvc"
@@ -14412,6 +14417,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Campesino\\MalCrear.cshtml",
+      "TargetPath": "Views\\Campesino\\MalCrear.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Campesino\\HomeCampesino.cshtml",
       "TargetPath": "Views\\Campesino\\HomeCampesino.cshtml",
       "FileKind": "mvc"
@@ -14424,6 +14434,11 @@
     {
       "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Campesino\\CrearCampesino.cshtml",
       "TargetPath": "Views\\Campesino\\CrearCampesino.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Cliente\\MalCrear.cshtml",
+      "TargetPath": "Views\\Cliente\\MalCrear.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14452,8 +14467,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Campesino\\CasiEditarProducto.cshtml",
-      "TargetPath": "Views\\Campesino\\CasiEditarProducto.cshtml",
+      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Producto\\CasiEditarProducto.cshtml",
+      "TargetPath": "Views\\Producto\\CasiEditarProducto.cshtml",
       "FileKind": "mvc"
     },
     {

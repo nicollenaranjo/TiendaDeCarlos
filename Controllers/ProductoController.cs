@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using TiendaDeCarlos.Models;
 using TiendaDeCarlos.Services;
 using TiendaDeCarlos.ViewModels;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace TiendaDeCarlos.Controllers
 {
@@ -21,14 +22,16 @@ namespace TiendaDeCarlos.Controllers
         #region Properties
         private readonly TiendaDBContext dBContext;
         private readonly IWebHostEnvironment hostEnvironment;  
+        private IMemoryCache _cache;
 
         #endregion Properties
 
         #region Constructor
-        public ProductoController(TiendaDBContext dBContext, IWebHostEnvironment hostEnvironment)
+        public ProductoController(TiendaDBContext dBContext, IWebHostEnvironment hostEnvironment, IMemoryCache memoryCache)
         {
             this.dBContext = dBContext;
             this.hostEnvironment = hostEnvironment;
+            _cache = memoryCache;
         }
         #endregion Constructor
 
@@ -44,6 +47,7 @@ namespace TiendaDeCarlos.Controllers
                     Nombre = productoV.Nombre,
                     Cantidad = productoV.Cantidad,
                     IdVendedor = Convert.ToInt16(TempData["Id"]),
+                    Precio = productoV.Precio,
                     Imagen = uniqueFileName
                 };
                 producto.Cantidad = i;
@@ -56,12 +60,6 @@ namespace TiendaDeCarlos.Controllers
                 return View(e.Message);
             }
         }
-
-        public async Task<IActionResult> EditarProducto()
-        {
-            return View();
-        }
-
         private string UploadedFile(ProductoViewModel pro)  
         {  
             string uniqueFileName = null;  
@@ -78,5 +76,59 @@ namespace TiendaDeCarlos.Controllers
             }  
             return uniqueFileName;  
         } 
+
+
+        [HttpPost("EditarProducto")]
+        public async Task<IActionResult> EditarProducto( ProductoModel producto )
+        {
+            try
+            {
+                int i = Convert.ToInt16((Request.Form["edit"]));
+                producto.Cantidad = i;
+                dBContext.Entry(producto).State = EntityState.Modified;
+                CampesinoModel cam = await dBContext.campesinos.FindAsync(producto.IdVendedor);
+                await dBContext.SaveChangesAsync();
+                return RedirectToAction("HomeCampesino","Campesino", cam);
+            }
+            catch(Exception e)
+            {
+                return View(e.Message);
+            }
+        }
+
+        //https://localhost:5001/Producto/CasiEditarProducto
+        [HttpPost("CasiEditarProducto")]
+        public async Task<IActionResult> CasiEditarProducto( int IdPro, int idCam )
+        {
+            try
+            {
+                ProductoModel producto = await dBContext.productos.FirstAsync( a => a.Id == IdPro) ;
+                return View( producto );
+            }   
+            catch( Exception e)
+            {
+                return View(e.Message);
+            }
+        }
+
+        [HttpPost("EliminarProducto")]
+        public async Task<IActionResult> EliminarProducto( int IdPro, int idCam )
+        {
+            try
+            {
+                List<CampesinoModel> Campesinos = await dBContext.campesinos.ToListAsync();
+                CampesinoModel cam = new CampesinoModel();
+                cam = Campesinos.First(a => a.Id == idCam);
+                ProductoModel producto = await dBContext.productos.FindAsync(IdPro);
+                dBContext.productos.Remove(producto);
+                await dBContext.SaveChangesAsync();
+                
+                return RedirectToAction("HomeCampesino","Campesino",cam);
+            }
+            catch( Exception e)
+            {
+                return View(e.Message);
+            }
+        }
     }
 }

@@ -4,31 +4,37 @@
 <!DOCTYPE html>
     <head>
         <meta name="viewport">
-        <link rel="stylesheet" >
+        <link rel="stylesheet" href="~/css/AgregarStyle.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
     </head>
     <body>
         <section>
             <div class="NewUser">
-                <form asp-controller="Producto" asp-action="EditarProducto"  method="POST">
+                <form asp-controller="Producto" asp-action="EditarProducto" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="Id">
                     <div>
-                        <input class="controls" asp-for="@Model.Nombre" name="nombre" placeholder="@Model.Nombre" required>
+                        <input type="hidden" asp-for="IdVendedor">
                     </div>
                     <div>
-                        <label asp-for="Imagen" class="control-label">
-                            <input type="file" asp-for="Imagen" class="custom-file-input" >  
-                        </label>  
-                    </div>  
+                        <label asp-for="Nombre"></label>
+                        <input asp-for="Nombre"/>
+                    </div>
                     <div>
-                        <p>Cantidad de producto que desea agregar:
-                            <select id="testSelect" name="testSelect" asp-for="Cantidad">
+                        <input class="controls" asp-for="Precio" name="precio" placeholder="Precio" required>
+                    </div>
+                    <div>
+                        <input type="hidden" asp-for="Imagen">
+                    </div>
+                    <div>
+                        <p>Cantidad de producto que desea:
+                            <select id="edit" name="edit" asp-for="Cantidad">
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="30">30</option>
                                 <option value="40">40</option>
                             </select>
-                            <asp:Button ID="btnTest" runat="server" Text="Test it!" onclick="btnTest_Click" />
+                            <asp:Button ID="btnEdit" runat="server" Text="Test it!" onclick="btnEdit_Click" />
                         </p>
                     </div>
                     <div>
