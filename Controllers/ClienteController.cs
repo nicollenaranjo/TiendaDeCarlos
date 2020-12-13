@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using TiendaDeCarlos.Models;
 using TiendaDeCarlos.Services;
 using TiendaDeCarlos.ViewModels;
@@ -17,12 +18,14 @@ namespace TiendaDeCarlos.Controllers
 
         #region Properties
         private readonly TiendaDBContext dBContext;
+        private IMemoryCache _cache;
         #endregion Properties
 
         #region Constructor
-        public ClienteController(TiendaDBContext dBContext)
+        public ClienteController(TiendaDBContext dBContext, IMemoryCache cache)
         {
             this.dBContext = dBContext;
+            _cache = cache;
         }
         #endregion Constructor
 
@@ -85,10 +88,10 @@ namespace TiendaDeCarlos.Controllers
         }
 
         //https://localhost:5001/Cliente/CarritoCliente
-        [HttpGet("CarritoCliente")]
-        public IActionResult CarritoCliente()
+        [OutputCache(Duracion = 60)]
+        public IActionResult CarritoCliente(ClienteModel cliente)
         {
-            return View();
+            return View(cliente);
         }
 
         [HttpPost("AgregarProductoCanasta")]
@@ -99,12 +102,28 @@ namespace TiendaDeCarlos.Controllers
                 ClienteModel cliente = await dBContext.clientes.FindAsync(IdCliente);
                 ProductoModel canasta = await dBContext.productos.FindAsync(idpro);
                 cliente.productosCarrito.Add(canasta);
+                AgregarCache(canasta, cliente);
                 return RedirectToAction("HomeCliente",cliente);
             }
             catch( Exception e)
             {
                 return View(e.Message);
             }
+        }
+
+        private void AgregarCache(ProductoModel producto, ClienteModel cliente)
+        {
+            int cuantos = 0;
+            if( _cache.TryGetValue(producto.Nombre, out cuantos) )
+            {
+                cuantos++;
+                Console.WriteLine(cuantos);
+            }
+            else
+            {
+                _cache.Set(producto.Nombre, 1);
+            }
+            
         }
     }
 }

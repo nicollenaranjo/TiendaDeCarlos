@@ -22,16 +22,15 @@ namespace TiendaDeCarlos.Controllers
         #region Properties
         private readonly TiendaDBContext dBContext;
         private readonly IWebHostEnvironment hostEnvironment;  
-        private IMemoryCache _cache;
+
 
         #endregion Properties
 
         #region Constructor
-        public ProductoController(TiendaDBContext dBContext, IWebHostEnvironment hostEnvironment, IMemoryCache memoryCache)
+        public ProductoController(TiendaDBContext dBContext, IWebHostEnvironment hostEnvironment)
         {
             this.dBContext = dBContext;
             this.hostEnvironment = hostEnvironment;
-            _cache = memoryCache;
         }
         #endregion Constructor
 

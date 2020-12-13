@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="MainWrapper">
-            @if( (Model.productosCarrito) != null)
+            @if( (Model.productosCarrito).Count > 0)
             {
                 <form method="POST">
                     <div class="view">
@@ -21,6 +21,7 @@
                         <tbody>
                             @foreach (var producto in Model.productosCarrito)
                             {
+                                var cacheItemKey = producto.Nombre;
                                 <tr>
                                     <td><div class="imagen">
                                         <img src="~/Pictures/@producto.Imagen"   
