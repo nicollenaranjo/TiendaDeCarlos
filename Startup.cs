@@ -28,6 +28,8 @@ namespace TiendaDeCarlos
         {
             services.AddControllersWithViews();
             services.AddMemoryCache();
+            services.AddOutputCaching();        
+            services.AddMvc(); 
             services.AddDbContextPool<TiendaDBContext>(options => options
             .UseMySql("Server=movilesdb20201.cmlwzrhblbat.us-east-1.rds.amazonaws.com;Port=3306;Database=POOGrupo3;User=movilesDBUser;Password=adminMovilesDB20201;", mySqlOptions => mySqlOptions.ServerVersion(new Version(10, 2, 21), ServerType.MariaDb)));
         }
@@ -45,6 +47,7 @@ namespace TiendaDeCarlos
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseOutputCaching();        
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

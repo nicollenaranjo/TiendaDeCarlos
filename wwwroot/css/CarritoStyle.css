@@ -5,27 +5,55 @@
   
 }
 
-.MainWrapper
-{
-    width: 100%;
-    height: 100vh;
-}
-
 .view
 {
-    width: 70%;
+    width: 50%;
     height: 100vh;
+    background-color: #ffee58;
+}
+
+.view table
+{
+    align-items: center;
+    margin: 10%;
+    font-family: 'Castoro', serif;
+    border-collapse: separate;
+    border-spacing: 15px 5px;
+    text-align: center;
+}
+
+.view h1
+{
+    text-align: center;
+    align-items: center;
+    line-height: 500px
 }
 
 .pago
 {
-    width: 30%;
-    height: 100vh;
+    width: 50%;
+    height: 50vh;
+    align-items: center;
+    margin-top: 10%;
+    font-family: 'Castoro', serif;
+    text-align: center;
+    padding: 40px;
 }
+
+.MainWrapper
+{
+    display: flex;
+}
+
+.pago button
+{
+    align-items: center;
+}
+
 
 .botons
 {
-    width: 100%;
+    width: 50%;
     height: 30px;
     background: #fdd835;
     font-size: 0.9rem;
@@ -35,7 +63,7 @@
     color: rgb(0, 0, 0);
     padding: 10px;
     transition-duration: 0.2s;
-    margin: 10px;
+    margin: 25px;
 }
 
 .botons:hover

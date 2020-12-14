@@ -143,3 +143,21 @@
     right:60px;
     width:250px;
 }
+
+.Hellos
+{
+    width: 25%;
+    height: 25px;
+    background: #ccd198;
+    font-size: 0.8rem;
+    border: none;
+    transition: all 0.1s linear;
+    font-family: 'Castoro', serif;
+    border-radius: 0.5em;
+}
+
+.Hellos:hover
+{
+    background-color:rgb(233, 236, 202) ;
+}
+

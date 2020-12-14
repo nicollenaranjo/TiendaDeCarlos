@@ -14397,6 +14397,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Cliente\\Historial.cshtml",
+      "TargetPath": "Views\\Cliente\\Historial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Usuario\\NoPassword.cshtml",
       "TargetPath": "Views\\Usuario\\NoPassword.cshtml",
       "FileKind": "mvc"
@@ -14434,6 +14439,11 @@
     {
       "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Campesino\\CrearCampesino.cshtml",
       "TargetPath": "Views\\Campesino\\CrearCampesino.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Nicolle\\Desktop\\TiendaDeCarlos\\Views\\Campesino\\NoProducto.cshtml",
+      "TargetPath": "Views\\Campesino\\NoProducto.cshtml",
       "FileKind": "mvc"
     },
     {

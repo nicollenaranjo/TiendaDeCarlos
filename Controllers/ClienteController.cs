@@ -29,6 +29,8 @@ namespace TiendaDeCarlos.Controllers
         }
         #endregion Constructor
 
+
+        [HttpGet("CrearClienteDef")]
         public async Task<IActionResult> CrearClienteDef(string username, string nombre, string apellido, string contrasena, string domicilio)
         {
             try
@@ -46,7 +48,6 @@ namespace TiendaDeCarlos.Controllers
                         Domicilio = domicilio,
                         metodoPago = (MetodoPago)i
                     };
-                    Console.WriteLine(Cliente.metodoPago);
                     dBContext.clientes.Add(Cliente);
                     await dBContext.SaveChangesAsync();
                     return RedirectToAction("HomeCliente",Cliente);
@@ -88,10 +89,33 @@ namespace TiendaDeCarlos.Controllers
         }
 
         //https://localhost:5001/Cliente/CarritoCliente
-        [OutputCache(Duracion = 60)]
-        public IActionResult CarritoCliente(ClienteModel cliente)
+        [HttpPost("CarritoCliente")]
+        public async Task<IActionResult> CarritoCliente(int id)
         {
-            return View(cliente);
+            ClienteModel cliente = await dBContext.clientes.FindAsync(id);
+            ClienteViewModel ClienteView = new ClienteViewModel()
+            {
+                Id = cliente.Id,
+                Username = cliente.Username,
+                Nombre = cliente.Nombre,
+                Apellido = cliente.Apellido,
+                Contrasena = cliente.Contrasena,
+                Domicilio = cliente.Contrasena,
+                metodoPago = cliente.metodoPago
+            };
+
+            List<ProductoModel> products = await dBContext.productos.ToListAsync();
+            foreach( ProductoModel producto in products)
+            {
+                int cuantos = 0;
+                if( _cache.TryGetValue(producto.Nombre, out cuantos) )
+                {
+                    ClienteView.productosCarrito.Add(producto);
+                    ClienteView.TotalCompra += producto.Precio * cuantos ;
+                    ClienteView.productosAPagar.Add(producto.Nombre, cuantos);
+                }
+            }
+            return View(ClienteView);
         }
 
         [HttpPost("AgregarProductoCanasta")]
@@ -101,7 +125,6 @@ namespace TiendaDeCarlos.Controllers
             {
                 ClienteModel cliente = await dBContext.clientes.FindAsync(IdCliente);
                 ProductoModel canasta = await dBContext.productos.FindAsync(idpro);
-                cliente.productosCarrito.Add(canasta);
                 AgregarCache(canasta, cliente);
                 return RedirectToAction("HomeCliente",cliente);
             }
@@ -111,19 +134,96 @@ namespace TiendaDeCarlos.Controllers
             }
         }
 
+        [OutputCache(Duration  = 600)]
         private void AgregarCache(ProductoModel producto, ClienteModel cliente)
         {
             int cuantos = 0;
-            if( _cache.TryGetValue(producto.Nombre, out cuantos) )
+            if( _cache.TryGetValue(producto.Nombre, out cuantos) )      
             {
                 cuantos++;
-                Console.WriteLine(cuantos);
+                _cache.Set(producto.Nombre, cuantos);
             }
             else
             {
                 _cache.Set(producto.Nombre, 1);
             }
             
+        }
+
+        [HttpPost("CasiHome")]
+        public async Task<IActionResult> CasiHome(int IdCliente)
+        {
+            try
+            {
+                ClienteModel cliente = await dBContext.clientes.FindAsync(IdCliente);
+                return RedirectToAction("HomeCliente", cliente);
+            }
+            catch(Exception e)
+            {
+                return View(e.Message);
+            }
+        }
+
+        [HttpPost("PagarProductos")]
+        public async Task<IActionResult> PagarProductos( int IdClientes )
+        {
+            try
+            {
+                ClienteModel cliente = await dBContext.clientes.FindAsync(IdClientes);
+                DateTime fechaActual = DateTime.Now;
+                List<ProductoModel> products = await dBContext.productos.ToListAsync();
+                foreach( ProductoModel producto in products)
+                {
+                    int cuantos = 0;
+                    ComprasModel compras = new ComprasModel();
+                    if( _cache.TryGetValue(producto.Nombre, out cuantos) )
+                    {
+                        compras.NombreProducto = producto.Nombre;
+                        compras.Fecha = fechaActual;
+                        compras.IdCliente = IdClientes;
+                        compras.Cantidad = cuantos;
+                    }
+                    producto.Cantidad -= cuantos;
+                    dBContext.Entry(producto).State = EntityState.Modified;
+                    dBContext.compras.Add(compras);
+                    await dBContext.SaveChangesAsync();
+                    _cache.Remove(producto.Nombre);
+                }
+                return RedirectToAction("HomeCliente","Cliente",cliente);
+            }
+            catch( Exception e)
+            {
+                return View(e.Message);
+            }
+        }
+
+
+        //https://localhost:5001/Cliente/Historial
+        [HttpPost("Historial")]
+        public async Task<IActionResult> Historial( int idCliente )
+        {
+            List<ComprasModel> Compras = await dBContext.compras.ToListAsync();
+            List<ComprasModel> CompraCliente = new List<ComprasModel>();
+            foreach( ComprasModel c in Compras )
+            {
+                if( c.IdCliente == idCliente )
+                {
+                    CompraCliente.Add(c);
+                }
+            }
+            return View(CompraCliente);
+        }
+
+        public async Task<IActionResult> CerrarSesion()
+        {
+            List<ProductoModel> products = await dBContext.productos.ToListAsync();
+            foreach( ProductoModel producto in products)
+            {
+                int cuantos = 0;
+                if( _cache.TryGetValue(producto.Nombre, out cuantos) )
+                    _cache.Remove(producto.Nombre);
+             }
+            return RedirectToAction("Login","CarlosStore");
         }
     }
 }

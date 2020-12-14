@@ -39,24 +39,27 @@ namespace TiendaDeCarlos.Controllers
         {
             try
             {
-                string uniqueFileName = UploadedFile(productoV);  
-                int i = Convert.ToInt16(Request.Form["testSelect"]);
-                ProductoModel producto = new ProductoModel()
-                {
-                    Nombre = productoV.Nombre,
-                    Cantidad = productoV.Cantidad,
-                    IdVendedor = Convert.ToInt16(TempData["Id"]),
-                    Precio = productoV.Precio,
-                    Imagen = uniqueFileName
-                };
-                producto.Cantidad = i;
-                dBContext.productos.Add(producto);
-                await dBContext.SaveChangesAsync();
-                return RedirectToAction("AgregoProductoCampesino","Campesino", producto);
+                ProductoModel productos = dBContext.productos.First(a=> a.Nombre == productoV.Nombre);
+                return RedirectToAction("NoProducto", "Campesino");
+              
+                
             }
             catch(Exception e)
             {
-                return View(e.Message);
+                    string uniqueFileName = UploadedFile(productoV);  
+                    int i = Convert.ToInt16(Request.Form["testSelect"]);
+                    ProductoModel producto = new ProductoModel()
+                    {
+                        Nombre = productoV.Nombre,
+                        Cantidad = productoV.Cantidad,
+                        IdVendedor = Convert.ToInt16(TempData["Id"]),
+                        Precio = productoV.Precio,
+                        Imagen = uniqueFileName
+                    };
+                    producto.Cantidad = i;
+                    dBContext.productos.Add(producto);
+                    await dBContext.SaveChangesAsync();
+                    return RedirectToAction("AgregoProductoCampesino","Campesino", producto);
             }
         }
         private string UploadedFile(ProductoViewModel pro)  

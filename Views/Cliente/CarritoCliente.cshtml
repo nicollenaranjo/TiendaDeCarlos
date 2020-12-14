@@ -1,4 +1,6 @@
-@model TiendaDeCarlos.Models.ClienteModel
+@model TiendaDeCarlos.ViewModels.ClienteViewModel
+
+
 <!DOCTYPE html>
     <head>
         <meta name="viewport">
@@ -7,50 +9,62 @@
         <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
     </head>
     <body>
+        <section id="pantallaNotWorking">
         <div class="MainWrapper">
             @if( (Model.productosCarrito).Count > 0)
+            
             {
+                 <div class="view">
                 <form method="POST">
-                    <div class="view">
                     <table>
                         <thead>
                             <tr>
-                                <th>Producto</th>
+                                <th>Productos en canasta</th>
+                                <th></th>
+                                <th>Cantidad agregada</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var producto in Model.productosCarrito)
                             {
-                                var cacheItemKey = producto.Nombre;
                                 <tr>
                                     <td><div class="imagen">
                                         <img src="~/Pictures/@producto.Imagen"   
                                         height="100" width="100"   
                                         asp-append-version="true" />  </td>
-                                    <td> @Html.DisplayFor(modelItem => producto.Nombre)</td>
+                                    <td> @Html.DisplayFor(modelItem => producto.Nombre)</td>  
+                                    <td> @Html.DisplayFor(modelItem => Model.productosAPagar[producto.Nombre])</td>      
                                 </tr> 
                             }
                         </tbody>
                     </table> 
-                    </div>
-
-                    <div class="pago">
-                        <div>
-                            <p class="words">Esta seguro de querer agregar mas productos</p>
-                        </div>
-                        <div>   
-                            <input class="botons" type="submit" value="Seguir comprando">
-                        </div>
-                    </div> 
+                    
                 </form>
+                </div>
             }
             else
             {
-                <p>No tiene productos agregador al carrito</p>
-                <form asp-controller="Cliente" asp-action="HomeCliente">
-                    <button type="submit">Volver a la pagina anterior</button>
-                </form>
+                <div class="view">
+                    <h1>No tiene productos agregados al carrito</h1>
+                </div>
             }
+
+            <div class="pago">
+                <div>
+                    <h1>Total de productos:</h1>
+                    <h1>Total a pagar: @Model.TotalCompra </h1>
+                </div>
+                @if( (Model.productosCarrito).Count > 0)
+                {
+                <form asp-controller="Cliente" asp-action="PagarProductos" asp-route-IdClientes="@Model.Id" enctype="multipart/form-data">   
+                    <button class="botons" type="submit">Pagar</button>
+                </form>
+                }
+                <form asp-controller="Cliente" asp-action="CasiHome" asp-route-IdCliente="@Model.Id">
+                    <button class="botons" type="submit">Volver a la pagina anterior</button>
+                </form>
+            </div> 
         </div>
+        </section>
     </body>    
 </html>

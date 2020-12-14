@@ -124,5 +124,20 @@ namespace TiendaDeCarlos.Controllers
             
         }
 
+
+        [HttpPost("CerrarSesion")]
+        public IActionResult CerrarSesion()
+        {
+            return RedirectToAction("Login","CarlosStore");
+        }
+
+
+        //https://localhost:5001/Campesino/NoProducto
+        [HttpGet("NoProducto")]
+        public IActionResult NoProducto()
+        {
+            ProductoViewModel producto = new ProductoViewModel();
+            return View(producto);
+        }
     }
 }

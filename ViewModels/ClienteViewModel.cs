@@ -10,11 +10,16 @@ namespace TiendaDeCarlos.ViewModels
     {
         #region Properties
         public List<ProductoModel> productos = new List<ProductoModel>();
+        public Dictionary<string, int> productosAPagar = new Dictionary<string, int>();
         public double TotalCompra;
         #endregion Properties
 
-        #region Methods
-        #endregion Methods
+        #region Contructor
+        public ClienteViewModel()
+        {
+            TotalCompra = 0;
+        }
+        #endregion Contructor
 
     }
 }
