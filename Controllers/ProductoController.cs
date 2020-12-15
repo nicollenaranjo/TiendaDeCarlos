@@ -41,7 +41,6 @@ namespace TiendaDeCarlos.Controllers
             {
                 ProductoModel productos = dBContext.productos.First(a=> a.Nombre == productoV.Nombre);
                 return RedirectToAction("NoProducto", "Campesino");
-              
                 
             }
             catch(Exception e)

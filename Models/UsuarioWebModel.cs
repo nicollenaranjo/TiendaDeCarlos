@@ -8,10 +8,6 @@ namespace TiendaDeCarlos.Models
         [Key]
         public int Id {get; set;} 
         public string Username {get; set;}
-
-        [Required(ErrorMessage = "Ingrese su nombre")]  
-        [Display(Name = "Nombre")]
-        [StringLength(100)]    
         public string Nombre {get; set;}
         public string Apellido {get; set;}
         public string Contrasena {get; set;}

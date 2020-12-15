@@ -37,23 +37,20 @@ namespace TiendaDeCarlos.Controllers
         {
             try
             {
-                CampesinoModel Campesino = dBContext.campesinos.First(a => a.Username == username);
-                if( Campesino == null )
-                {
-                    Campesino.Username = username;
+                CampesinoModel Campesino = dBContext.campesinos.First(a => a.Username == username);            
+                return View("MalCrear");
+            }
+            catch(Exception e)
+            {
+                CampesinoModel Campesino = new CampesinoModel();
+                Campesino.Username = username;
                     Campesino.Nombre = nombre;
                     Campesino.Apellido = apellido;
                     Campesino.Contrasena = contrasena;
                     Campesino.Domicilio = domicilio;
                     dBContext.campesinos.Add(Campesino);
                     await dBContext.SaveChangesAsync();
-                    return RedirectToAction("HomeCampesino","Campesino",Campesino);                
-                }
-                return View("MalCrear");
-            }
-            catch(Exception e)
-            {
-                return View(e.Message);
+                    return RedirectToAction("HomeCampesino","Campesino",Campesino);    
             }
         }
 

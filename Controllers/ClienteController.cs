@@ -36,9 +36,12 @@ namespace TiendaDeCarlos.Controllers
             try
             {
                 ClienteModel cliente = dBContext.clientes.First(a => a.Username == username);
-                if( cliente == null )
-                {
-                    int i = Convert.ToInt16(Request.Form["testSelect"]);
+                return View("MalCrear");
+                
+            }
+            catch(Exception e)
+            {
+                int i = Convert.ToInt16(Request.Form["testSelect"]);
                     ClienteModel Cliente = new ClienteModel()
                     {
                         Username = username,
@@ -51,13 +54,6 @@ namespace TiendaDeCarlos.Controllers
                     dBContext.clientes.Add(Cliente);
                     await dBContext.SaveChangesAsync();
                     return RedirectToAction("HomeCliente",Cliente);
-                }
-                return View("MalCrear");
-                
-            }
-            catch(Exception e)
-            {
-                return View(e.Message);
             }
         }
 
@@ -125,7 +121,7 @@ namespace TiendaDeCarlos.Controllers
             {
                 ClienteModel cliente = await dBContext.clientes.FindAsync(IdCliente);
                 ProductoModel canasta = await dBContext.productos.FindAsync(idpro);
-                AgregarCache(canasta, cliente);
+                AgregarCache(canasta);
                 return RedirectToAction("HomeCliente",cliente);
             }
             catch( Exception e)
@@ -135,7 +131,7 @@ namespace TiendaDeCarlos.Controllers
         }
 
         [OutputCache(Duration  = 600)]
-        private void AgregarCache(ProductoModel producto, ClienteModel cliente)
+        private void AgregarCache(ProductoModel producto)
         {
             int cuantos = 0;
             if( _cache.TryGetValue(producto.Nombre, out cuantos) )      
